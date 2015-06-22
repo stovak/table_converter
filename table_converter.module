@@ -184,7 +184,6 @@ function table_converter_fix_table($table) {
 /**
  * @param string $column
  * @param string $table
- * @param \Symfony\Component\Console\Output\OutputInterface $output
  * @return bool success|failure
  */
 function table_converter_fix_column( $column_def, $table ) {
