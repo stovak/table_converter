@@ -171,8 +171,7 @@ function table_converter_get_longest_field_length($tablename, $columnname) {
 
 /**
  * @param string $table
- * @param \Symfony\Component\Console\Output\OutputInterface $output
- * @return bool success|failure
+ * @return DatabaseStatment object
  */
 function table_converter_fix_table($table) {
   $sql = "ALTER TABLE `{$table}` CONVERT to CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;";
@@ -184,7 +183,7 @@ function table_converter_fix_table($table) {
 /**
  * @param string $column
  * @param string $table
- * @return bool success|failure
+ * @return DatabaseStatment object
  */
 function table_converter_fix_column( $column_def, $table ) {
   // only resize columns that are a key
