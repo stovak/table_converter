@@ -1,0 +1,37 @@
+#table-converter-column-list {
+}
+
+#table-converter-column-list tr.tablename {
+}
+
+#table-converter-column-list td.tablename {
+    vertical-align: bottom;
+}
+
+#table-converter-column-list td.convert-button {
+    vertical-align: bottom;
+    text-align: right;
+}
+
+#table-converter-column-list td.tablename h3 {
+    margin-bottom: 0px; margin-top: 20px;
+    line-height: auto;
+    font-size: 24px;
+    font-weight: bolder;
+}
+#table-converter-column-list tr.header td {
+    text-transform: uppercase;
+    font-size: 10px;
+    color: white;
+    background: #999999;
+}
+#table-converter-column-list tr.unconverted {
+    background: green;
+}
+#table-converter-column-list tr.unconverted.dont-truncate {
+    background: palevioletred;
+}
+
+#table-converter-column-list tr.unconverted td {
+    color: white;
+}

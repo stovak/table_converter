@@ -1,0 +1,7 @@
+name = Table Converter
+core = 7.x
+description = Convert tables from utf8 to utf8mb4
+version = "7.x-1.0"
+package = Bronto
+
+configure = admin/system/tables
