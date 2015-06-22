@@ -28,6 +28,10 @@ function table_converter_menu() {
 }
 
 
+/**
+ * @return string
+ * @throws \Exception
+ */
 function table_converter_view() {
   $path = drupal_get_path("module", "table_converter");
   drupal_add_css("{$path}/table_converter.css");
@@ -46,6 +50,11 @@ function table_converter_view() {
   ]);
 }
 
+/**
+ * @param $table_name
+ * @return array
+ * @throws \Exception
+ */
 function table_converter_create_column_table($table_name) {
   $columns = table_converter_get_column_iterator($table_name, true);
   $headers = FALSE;
@@ -66,9 +75,9 @@ function table_converter_create_column_table($table_name) {
     $max = table_converter_get_longest_field_length($table_name, $column_name);
     $column_def->max_length_of_values = ($max)? $max:"no data";
     if (intval($max) >= 191
-        && $column_def->COLLATION_NAME == "utf8_general_ci"
-        && $column_def->DATA_TYPE == "varchar"
-        && $column_def->COLUMN_KEY == "PRI") {
+      && $column_def->COLLATION_NAME == "utf8_general_ci"
+      && $column_def->DATA_TYPE == "varchar"
+      && $column_def->COLUMN_KEY == "PRI") {
       $classes[] = "dont-truncate";
     }
     if ($column_def->COLLATION_NAME == "utf8_general_ci") {
@@ -104,6 +113,11 @@ function table_converter_create_column_table($table_name) {
   ];
 }
 
+/**
+ * @param $tablename
+ * @return array
+ * @throws \Exception
+ */
 function table_converter_create_display_row($tablename) {
   $db_table = [];
   $db_table[] = [
@@ -145,6 +159,9 @@ function table_converter_create_display_row($tablename) {
   ];
 }
 
+/**
+ * @param $tablename
+ */
 function table_converter_convert_table($tablename) {
   $schema = table_converter_get_column_iterator($tablename);
   foreach ($schema as $column_name => $column_def){
@@ -161,10 +178,19 @@ function table_converter_convert_table($tablename) {
   exit();
 }
 
+/**
+ * @param $tablename
+ * @return DatabaseStatement object
+ */
 function table_converter_get_table_columns($tablename){
   return db_query("show FULL COLUMNS from {" . $tablename . "}")->fetchAllAssoc('Field');
 }
 
+/**
+ * @param $tablename
+ * @param $columnname
+ * @return DatabaseStatement object
+ */
 function table_converter_get_longest_field_length($tablename, $columnname) {
   return db_query("select length({".$columnname."}) as ".$columnname."_length from ".$tablename." order by length({".$columnname."}) desc limit 1")->fetchField();
 }
