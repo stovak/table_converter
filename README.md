@@ -9,4 +9,6 @@ The module will list of the current tables in the database and will highlight ro
 * COLS that are varchar with size greater than 191 that are primary keys will be highlighted for conversion in green if there are no data row values for that column that are greater than 191 characters in length. 
 * COLS that are varchar with size greater than 191 that are primary keys and have values with lengths greater than 191 are highlighted in RED and prevent the "convert all" link from appearing. Resolve those by hand and refresh the page to convert all.
 
+In other words, if no data will be lost by truncation, that is the preferred method. Where data will be lost, the row appears in RED and you should resolve by hand.
+
 #BACKUP YOUR DB FIRST AS YOU ARE WORKING WITHOUT A NET
