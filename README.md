@@ -15,4 +15,48 @@ In other words, if no data will be lost by truncation, that is the preferred met
 
 #Supporting
 
-Included with this module is a few "supporting" files. A patch that allows core to specify COLLATION and CHARSET vars in the database settings in settings.php. There are also requisite my.cnf changes that need to be made to your mysql process as well as the actual settings for settings.php that allows the database to use utf8mb4 in all it's sql calls. Without these three pieces in place, Drupal will not be able to store mb4 values in the database once you have converted the tables.
+Included with this module is a few "supporting" files. A _.patch_ that allows core to specify `COLLATION` and `CHARSET` vars in the database settings in settings.php.
+
+```PHP
+
+$database = [
+  'default' => [
+    'default' => [
+      'driver' => 'mysql',
+      'database' => 'databasename',
+      'username' => 'username',
+      'password' => 'password',
+      'host' => 'localhost',
+      'port' => 3306,
+      'prefix' => 'myprefix_',
+      'collation' => 'utf8mb4_general_ci',
+      'charset' => 'utf8mb4'
+    ]
+  ]
+];
+
+
+```
+
+
+There are also requisite my.cnf changes that need to be made to your mysql process:
+
+```
+[client]
+default-character-set = utf8mb4
+
+[mysql]
+max_allowed_packet = 128M
+default-character-set = utf8mb4
+character-set-connection = utf8mb4
+character-set-results = utf8mb4
+
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+
+collation-server = utf8mb4_unicode_ci
+
+```
+
+as well as the actual settings for settings.php that allows the database to use utf8mb4 in all it's sql calls. Without these three pieces in place, Drupal will not be able to store mb4 values in the database once you have converted the tables.
