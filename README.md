@@ -12,3 +12,7 @@ The module will list of the current tables in the database and will highlight CO
 In other words, if no data will be lost by truncation, that is the preferred method. Where data will be lost, the row appears in RED and you should resolve by hand.
 
 #BACKUP YOUR DB FIRST AS YOU ARE WORKING WITHOUT A NET
+
+#Supporting
+
+Included with this module is a few "supporting" files. A patch that allows core to specify COLLATION and CHARSET vars in the database settings in settings.php. There are also requisite my.cnf changes that need to be made to your mysql process as well as the actual settings for settings.php that allows the database to use utf8mb4 in all it's sql calls. Without these three pieces in place, Drupal will not be able to store mb4 values in the database once you have converted the tables.
