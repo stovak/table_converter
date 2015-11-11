@@ -46,7 +46,6 @@ There are also requisite my.cnf changes that need to be made to your mysql proce
 default-character-set = utf8mb4
 
 [mysql]
-max_allowed_packet = 128M
 default-character-set = utf8mb4
 character-set-connection = utf8mb4
 character-set-results = utf8mb4
@@ -56,6 +55,12 @@ character-set-client-handshake = FALSE
 character-set-server = utf8mb4
 
 collation-server = utf8mb4_unicode_ci
+
+# Large prefix suppport (no need to truncate indexes to 191 characters).
+# innodb_file_format     = Barracuda
+# innodb_file_format_max = Barracuda
+# innodb_file_per_table  = 1
+# innodb_large_prefix    = 1
 
 ```
 
